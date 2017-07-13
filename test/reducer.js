@@ -13,7 +13,7 @@ describe('store creation', () => {
   });
 });
 
-describe('entity manipulation', () => {
+describe('single entity manipulation', () => {
   const store = storeFactory();
 
   it('should be able to add individual entities of a type', () => {
