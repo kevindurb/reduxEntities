@@ -4,5 +4,21 @@
   "main": "index.js",
   "repository": "git@github.com:kevindurb/reduxEntities.git",
   "author": "Kevin Durbin <kevindurb@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "scripts": {
+    "test": "mocha",
+    "test:watch": "mocha --watch --reporter min"
+  },
+  "devDependencies": {
+    "eslint": "^4.2.0",
+    "eslint-plugin-node": "^5.1.0",
+    "mocha": "^3.4.2",
+    "redux": "^3.7.2"
+  },
+  "dependencies": {
+    "normalizr": "^3.2.3"
+  }
 }

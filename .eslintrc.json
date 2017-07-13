@@ -1,0 +1,16 @@
+{
+  "plugins": ["node"],
+  "extends": ["eslint:recommended", "plugin:node/recommended"],
+  "globals": {
+    "describe": true,
+    "xdescribe": true,
+    "it": true,
+    "xit": true,
+    "context": true,
+    "xcontext": true
+  },
+  "rules": {
+    "node/exports-style": ["error", "module.exports"],
+    "node/no-unpublished-require": ["off"]
+  }
+}
