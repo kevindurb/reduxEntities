@@ -14,12 +14,51 @@ describe('store creation', () => {
 });
 
 describe('single entity manipulation', () => {
-  const store = storeFactory();
+  context('#addEntity', () => {
+    it('should be able to add individual entities of a type', () => {
+      const store = storeFactory();
+      const fredTheDog = { id: 5, name: 'fred' };
+      store.dispatch(actions.addEntity('dog', fredTheDog));
+      const state = store.getState();
+      assert.strictEqual(state.dog[5], fredTheDog);
+    });
 
-  it('should be able to add individual entities of a type', () => {
-    const fredTheDog = { id: 5, name: 'fred' };
-    store.dispatch(actions.addEntity('dog', fredTheDog));
-    const state = store.getState();
-    assert.strictEqual(state.dog[5], fredTheDog);
+    it('should be able to add a second entity', () => {
+      const store = storeFactory();
+      const fredTheDog = { id: 5, name: 'fred' };
+      const joeTheDog = { id: 6, name: 'joe' };
+
+      store.dispatch(actions.addEntity('dog', fredTheDog));
+      store.dispatch(actions.addEntity('dog', joeTheDog));
+
+      const state = store.getState();
+      assert.strictEqual(state.dog[6], joeTheDog);
+    });
+
+    it('should be able to add a second type of entity and not mess up previous entities', () => {
+      const store = storeFactory();
+      const joeTheDog = { id: 6, name: 'joe' };
+      const georgeTheRabbit = { id: 6, name: 'george' };
+
+      store.dispatch(actions.addEntity('dog', joeTheDog));
+      store.dispatch(actions.addEntity('rabbit', georgeTheRabbit));
+
+      const state = store.getState();
+      assert.strictEqual(state.dog[6], joeTheDog);
+      assert.strictEqual(state.rabbit[6], georgeTheRabbit);
+    });
+  });
+
+  context('#removeEntity', () => {
+    it('should be able to remove an entity', () => {
+      const store = storeFactory();
+      const fredTheDog = { id: 5, name: 'fred' };
+
+      store.dispatch(actions.addEntity('dog', fredTheDog));
+      assert.strictEqual(store.getState().dog[5], fredTheDog);
+
+      store.dispatch(actions.removeEntity('dog', fredTheDog));
+      assert.strictEqual(store.getState().dog[5], undefined);
+    });
   });
 });
