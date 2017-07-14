@@ -17,8 +17,9 @@ describe('single entity manipulation', () => {
   const store = storeFactory();
 
   it('should be able to add individual entities of a type', () => {
-    store.dispatch(actions.addEntity('dog', { name: 'fred' }));
+    const fredTheDog = { id: 5, name: 'fred' };
+    store.dispatch(actions.addEntity('dog', fredTheDog));
     const state = store.getState();
-    assert(state.dog, 'dog entry exists');
+    assert.strictEqual(state.dog[5], fredTheDog);
   });
 });

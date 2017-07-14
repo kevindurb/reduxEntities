@@ -19,6 +19,7 @@
     "redux": "^3.7.2"
   },
   "dependencies": {
+    "immutability-helper": "^2.3.0",
     "normalizr": "^3.2.3"
   }
 }
